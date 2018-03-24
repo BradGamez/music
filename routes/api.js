@@ -16,7 +16,7 @@ sequelize
       console.error('Unable to connect to the database:', err);
 });
 
-//init models
+//init song model
 const Song = sequelize.define('songs', {
 
   title: {
@@ -36,29 +36,7 @@ const Song = sequelize.define('songs', {
   }
 });
 
-const User = sequelize.define('users', {
-
-  email: {
-    type: Sequelize.STRING,
-    unique: true,
-        allowNull: false,
-        validate: {
-            notEmpty: true,
-            len: [1,50]
-        }
-  },
-  
-    password: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        validate: {
-            notEmpty: true
-    }
-  }
-
-});
-
-//Api stuff
+//Api stuff with song Model
 
 // DEFAULT GET HERE ///
 router.get('/music', function (req, res) {
