@@ -1,6 +1,7 @@
 var express = require('express');
 var http = require('http');
 var bodyParser = require('body-parser');
+const passportSetup = require('./config/passport-setup'); //to fire google strategy when server is on.
 
 //Routes
 var api = require('./routes/api');
