@@ -1,0 +1,19 @@
+<div class="row">
+    <div class="col-md-12 align-center"ng-init="getSongById()">
+        <img class="img-thumbnail" style="width: 300px; height: 300px;" ng-src="{{song.album_img}}" title="{{song.album}}" alt="{{song.name}}">
+        <h1>{{song.title}}</h1>
+        <p>{{song.artist}}</p>
+    </div>
+</div>
+
+
+    <div class='col-md-12 align-center'>
+        <a><i class="fa play-button-lg fa-chevron-circle-left"></i></a>
+        <a ng-if="play" ng-click="playDetect()"><i class="fa play-button-lg fa-pause-circle"></i></a>
+        <a ng-if="!play" ng-click="playDetect()"><i class="fa play-button-lg fa-play-circle"></i></a>
+        <a><i class="fa play-button-lg fa-chevron-circle-right"></i></a>
+    </div>
+
+    <div class='col-md-12 slider'>
+        <p><input ng-click="sliderDetect()" type="range" min="0" max="100" value="0" id="slider-color"></p>
+    </div>

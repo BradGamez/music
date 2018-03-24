@@ -1,0 +1,13 @@
+<div class="col-md-12"ng-init="getSongs()"></div>
+
+<div class="row">
+    <div class="col-md-4" ng-repeat="song in songs">
+      <div class="song-container">
+        <img class="song-img" ng-src="{{song.album_img}}" title="{{song.album}}" alt="{{song.name}}">
+        <a href="#!/music/read/{{song.id}}"><i style="padding-right: 10px;" class="float-right play-button-sm fa fa-play-circle"></i></a>
+        <p class="song-title">{{song.title}}</p>
+        <small class="song-infos">{{song.artist}}</small><br>
+        <small class="song-infos">{{song.album}}</small>
+      </div>
+    </div>
+</div>

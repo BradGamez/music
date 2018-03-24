@@ -1,0 +1,22 @@
+{
+  "name": "node-music",
+  "version": "1.0.0",
+  "description": "A music streaming app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Killiann Hervagault",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "lame": "^1.2.4",
+    "passport": "^0.4.0",
+    "passport-google-oauth20": "^1.0.0",
+    "pg": "^7.4.1",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.35.2",
+    "speaker": "^0.4.0"
+  }
+}
