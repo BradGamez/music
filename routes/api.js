@@ -38,8 +38,18 @@ const Song = sequelize.define('songs', {
 
 //Api stuff with song Model
 
+//let's check if user is connected before doing anything
+const authCheck = (req, res, next) => { //Simple middleware to be injected.
+  if(!req.user){
+    //if user is not logged in
+    res.send('Error 404, please try again later.')
+  } else {
+    next();
+  }
+};
+
 // DEFAULT GET HERE ///
-router.get('/music', function (req, res) {
+router.get('/music', authCheck, function (req, res) {
 
     Song.findAll().then(songs => {
         res.json(songs)
@@ -47,7 +57,7 @@ router.get('/music', function (req, res) {
 });
 
 /// GET Song BY ID ///
-router.get('/music/id=:id', function (req, res) {
+router.get('/music/id=:id', authCheck, function (req, res) {
 
   Song.find({
     where: {
@@ -57,7 +67,7 @@ router.get('/music/id=:id', function (req, res) {
 });
 
 /// GET Song BY name ///
-router.get('/music/name=:name', function (req, res) {
+router.get('/music/name=:name', authCheck, function (req, res) {
 
     Song.find({
       where: {
@@ -67,7 +77,7 @@ router.get('/music/name=:name', function (req, res) {
   });
 
 /// GET Song BY album ///
-router.get('/music/album=:album', function (req, res) {
+router.get('/music/album=:album', authCheck, function (req, res) {
 
     Song.find({
       where: {
@@ -75,7 +85,5 @@ router.get('/music/album=:album', function (req, res) {
       }
     }).then((song) => song ? res.json(song) : res.status(404).json({error: 'unknown song'}))
   });
-
-  //Users here later on
 
 module.exports = router;

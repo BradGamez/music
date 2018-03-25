@@ -15,7 +15,7 @@ var app = express();
 //Cookie stuff
 app.use(cookieSession({
     maxAge: 24*60*60*1000, //Lenght of cookie is validate in ms.,
-    keys: config.session.cookieKey
+    keys: [config.session.cookieKey]
 }));
 
 app.use(passport.initialize());
