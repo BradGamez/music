@@ -3,6 +3,7 @@ const GoogleStrategy = require('passport-google-oauth20');
 const config = require('./database');
 const Sequelize = require('sequelize');
 
+
 const sequelize = new Sequelize(config.database);
 
 //Define User model
@@ -20,6 +21,16 @@ const User = sequelize.define('users', {
 
 //Passport stuff with User model
 
+passport.serializeUser((user, done) => { //Cookie cooking here :)
+    done(null, user.id);
+});
+
+passport.deserializeUser((id, done) => {
+    User.findOne({ where: {id: id}}).then((user) => {
+        done(null, user);
+    });
+});
+
 passport.use(
     new GoogleStrategy({
     //options for the google strategy
@@ -30,15 +41,15 @@ passport.use(
         //we recive a special code (uri) and it contains the data infos that we want.
         console.log('passport callback function reached');
         
-        //check if user already exist
-            User.findOne({googleId: profile.id}).then(currentuser => {
-                if(currentuser) {
-                console.log('user already exist');
-                } else {
-                User.create({
-                    username: profile.displayName,
-                    googleId: profile.id
-                });
+        //check if user is me
+            User.findOne({ where: {googleId: profile.id}}).then(currentuser => {
+
+                    if(currentuser.googleId == config.google.myGoogleId) {
+                        console.log('Welcome SuperUser');
+                        done(null, currentuser);
+                    }
+                 else {
+                    console.log('Oh man, you are not the superUser, what a shame ! ;)')
                 }
             });
 
