@@ -86,4 +86,10 @@ router.get('/music/album=:album', authCheck, function (req, res) {
     }).then((song) => song ? res.json(song) : res.status(404).json({error: 'unknown song'}))
   });
 
+router.get('/music/count', authCheck, function (req, res) {
+  Song.count().then(c => {
+    res.json(c);
+  });
+});
+
 module.exports = router;

@@ -1,12 +1,37 @@
-angular.module('shiffman').controller('p5Controller',['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
+angular.module('shiffman').controller('p5Controller',['$scope', '$http', '$routeParams', '$window', '$location', function($scope, $http, $routeParams, $window, $location){
 	console.log("p5 Controller loaded...");
 	
 		$scope.play = true;
 		play= true
+		hasRestarted = false;
+
+		var url = $location.path();
 	
 		$scope.playDetect = function() {
 			$scope.play = !$scope.play;
 			play = !play;
+		}
+
+		$scope.switchBack = function(id) {
+			$http.get('/api/music/count').then(function(response){
+				count = response.data;
+				if(id - 1 == 0) {
+					$window.location.href = '#!/music/read/' + count;
+				} else {
+				$window.location.href = '#!/music/read/' + (id - 1);
+				}
+			});
+		}
+
+		$scope.switchNext = function(id) {
+			$http.get('/api/music/count').then(function(response){
+				count = response.data;
+				if(id + 1 > count) {
+					$window.location.href = '#!/music/read/' + 1;
+				} else {
+				$window.location.href = '#!/music/read/' + (id + 1);
+				}
+			});
 		}
 	
 		//Have to deal with timeline when slider is not clicked.
@@ -53,7 +78,8 @@ angular.module('shiffman').controller('p5Controller',['$scope', '$http', '$route
 	
 					shiffman.setup = function() {
 						slider = shiffman.select('#slider-color');
-						url = shiffman.getURL();
+						url = $location.path();
+						//console.log(url);
 						shiffman.noCanvas();
 						//console.log(song.isLoaded());
 						fullTime = Math.floor(song.duration());
@@ -70,7 +96,7 @@ angular.module('shiffman').controller('p5Controller',['$scope', '$http', '$route
 						//the trick to stop p5 process if controller has changed.
 						var fullTime = Math.floor(song.duration());
 						var currentTime = Math.floor(song.currentTime())
-						var current_url = shiffman.getURL()
+						var current_url = $location.path();
 						if(current_url != url) {
 						shiffman.remove();
 						}
@@ -106,4 +132,4 @@ angular.module('shiffman').controller('p5Controller',['$scope', '$http', '$route
 			});
 		}
 	
-	}]);	
+	}]);
