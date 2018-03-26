@@ -107,7 +107,7 @@ router.post('/music', authCheck, function (req, res) {
       artist: req.body.artist,
       album: req.body.album,
       album_img: req.body.album_img,
-      path: req.body.path,
+      path: "module/ressource/" + req.body.path,
       id: newId
 
     }).then((song) => res.json(song))
