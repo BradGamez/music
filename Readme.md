@@ -1,3 +1,1 @@
-Ready to be deployed.
-
-//Be carefull on protected routes for API after testing.
+Already deployed on node-music.com //server is running when i need it :).

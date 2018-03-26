@@ -92,9 +92,9 @@ router.get('/music/count', authCheck, function (req, res) {
     res.json(c);
   });
 });
-//////////////////////////// UNABLE AUTHCHECK AFTER TESTS /////////////////////////////////
+
 /// POST NEW Song ///
-router.post('/music', function (req, res) {
+router.post('/music', authCheck, function (req, res) {
 
   var newId;
 
@@ -140,7 +140,7 @@ router.put('/music/id=:id', authCheck, function (req, res) {
 });
 
 /// DELETE Song ///
-router.delete('/music/id=:id', function (req, res) {
+router.delete('/music/id=:id', authCheck, function (req, res) {
 
   Song.destroy({
     where: {
