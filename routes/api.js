@@ -114,31 +114,6 @@ router.post('/music', authCheck, function (req, res) {
   });
 });
 
-/// UPDATE Song///
-router.put('/music/id=:id', authCheck, function (req, res) {
-
-  Song.find({
-    where: {
-      id: req.params.id
-    }
-
-  }).then((song) => {
-    if(song){
-      song.updateAttributes({
-        title: req.body.title,
-        artist: req.body.artist,
-        album: req.body.album,
-        album_img: req.body.album_img,
-        path: req.body.path
-
-      }).then(function(song) {
-        res.send(song)
-      })
-    } else
-    res.redirect('/music/error')
-    })
-});
-
 /// DELETE Song ///
 router.delete('/music/id=:id', authCheck, function (req, res) {
 
