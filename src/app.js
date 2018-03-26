@@ -20,6 +20,14 @@ myApp.config(['$routeProvider', function($routeProvider){
             templateUrl: 'views/home.html',
             controller: 'appController'
         })
+        .when('/music/add', {
+            templateUrl: 'views/add_song.html',
+            controller: 'appController'
+        })
+        .when('/music/success', {
+            templateUrl: 'views/success.html',
+            controller: 'appController'
+        })
         .otherwise({
             redirecTo: '/'
         });
@@ -37,13 +45,42 @@ myApp.controller('appController', ['$scope', '$http', '$routeParams', function($
     console.log("appController is working")
 
     
-    //For Musics //
     $scope.getSongs = function(){
 
        $http.get('/api/music').then(function(response){
         $scope.songs = response.data;
         });
     }
+
+    $scope.getSongById = function() {
+        var id= $routeParams.id;
+        $http.get('/api/music/id=' + id).then(function(response){ //All client logic goes in then
+        $scope.song = response.data;
+        });
+    }
+
+    $scope.addSong = function() {
+        $http.post('/api/music/', $scope.song).then(function (response) {
+
+            window.location.href='#!/music/success';
+        });
+    }
+
+    $scope.updateSong = function() {
+        var id= $routeParams.id;
+        $http.put('/api/music/id=' + id, $scope.song).then(function (response) {
+                
+            window.location.href='#!/music/success';
+        });
+    }
+
+    $scope.deleteRecipe = function(id) {
+        $http.delete('/api/music/id=' + id, $scope.song).then(function (response) {
+
+            window.location.href='#!/music/success';
+        });
+    }
+
 
 }]);
 

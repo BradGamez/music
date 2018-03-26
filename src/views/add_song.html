@@ -1,0 +1,20 @@
+<div>
+    <form ng-submit="addSong()">
+        <div class="form-group">
+          <label >ID3 Tags</label>
+          <input type="text" class="form-control form-margin" ng-model="song.title" placeholder="Title">
+          <input type="text" class="form-control" ng-model="song.artist" placeholder="Artist">
+        </div>
+        <div class="form-group">
+            <label>Album</label>
+            <input type="text" class="form-control form-margin" ng-model="song.album" placeholder="Album title">
+            <input type="text" class="form-control" ng-model="song.album_img" placeholder="Album image">
+        </div>
+        <div class="form-group">
+            <label>Path</label>
+            <input type="text" class="form-control" ng-model="song.path" placeholder="Path">
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
