@@ -28,6 +28,10 @@ myApp.config(['$routeProvider', function($routeProvider){
             templateUrl: 'views/success.html',
             controller: 'appController'
         })
+        .when('/music/error', {
+            templateUrl: 'views/error.html',
+            controller: 'appController'
+        })
         .otherwise({
             redirecTo: '/'
         });
@@ -65,22 +69,6 @@ myApp.controller('appController', ['$scope', '$http', '$routeParams', function($
             window.location.href='#!/music/success';
         });
     }
-
-    $scope.updateSong = function() {
-        var id= $routeParams.id;
-        $http.put('/api/music/id=' + id, $scope.song).then(function (response) {
-                
-            window.location.href='#!/music/success';
-        });
-    }
-
-    $scope.deleteRecipe = function(id) {
-        $http.delete('/api/music/id=' + id, $scope.song).then(function (response) {
-
-            window.location.href='#!/music/success';
-        });
-    }
-
 
 }]);
 

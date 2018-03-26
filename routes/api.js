@@ -63,7 +63,7 @@ router.get('/music/id=:id', authCheck, function (req, res) {
     where: {
       id: req.params.id
     }
-  }).then((song) => song ? res.json(song) : res.status(404).json({error: 'unknown song'}))
+  }).then((song) => song ? res.json(song) : res.redirect('/music/error'))
 });
 
 /// GET Song BY name ///
@@ -73,7 +73,7 @@ router.get('/music/name=:name', authCheck, function (req, res) {
       where: {
         title: req.params.name
       }
-    }).then((song) => song ? res.json(song) : res.status(404).json({error: 'unknown song'}))
+    }).then((song) => song ? res.json(song) : res.redirect('/music/error'))
   });
 
 /// GET Song BY album ///
@@ -83,7 +83,7 @@ router.get('/music/album=:album', authCheck, function (req, res) {
       where: {
         album: req.params.album
       }
-    }).then((song) => song ? res.json(song) : res.status(404).json({error: 'unknown song'}))
+    }).then((song) => song ? res.json(song) : res.redirect('/music/error'))
   });
 
 //Count musics
@@ -135,7 +135,7 @@ router.put('/music/id=:id', authCheck, function (req, res) {
         res.send(song)
       })
     } else
-    res.status(404).json({error: "unknown song"})
+    res.redirect('/music/error')
     })
 });
 
@@ -146,7 +146,7 @@ router.delete('/music/id=:id', function (req, res) {
     where: {
       id: req.params.id
     }
-  }).then((song) => song ? res.json(song) : res.status(404).json({error: 'unknown song'}))
+  }).then((song) => song ? res.json(song) : res.redirect('/music/error'))
 });
 
 module.exports = router;

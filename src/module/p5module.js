@@ -9,6 +9,14 @@ angular.module('shiffman').controller('p5Controller',['$scope', '$http', '$route
 			play = !play;
 		}
 
+		$scope.deleteSong = function(id) {
+			$http.delete('/api/music/id=' + id, $scope.song).then(function (response) {
+	
+				window.location.href='#!/music/success';
+				shiffman.remove();
+			});
+		}
+
 		$scope.switchBack = function(id) {
 			$http.get('/api/music/count').then(function(response){
 				count = response.data;
