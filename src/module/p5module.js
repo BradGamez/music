@@ -1,11 +1,8 @@
-angular.module('shiffman').controller('p5Controller',['$scope', '$http', '$routeParams', '$window', '$location', function($scope, $http, $routeParams, $window, $location){
+angular.module('shiffman').controller('p5Controller',['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
 	console.log("p5 Controller loaded...");
 	
 		$scope.play = true;
 		play= true
-		hasRestarted = false;
-
-		var url = $location.path();
 	
 		$scope.playDetect = function() {
 			$scope.play = !$scope.play;
@@ -33,9 +30,6 @@ angular.module('shiffman').controller('p5Controller',['$scope', '$http', '$route
 				}
 			});
 		}
-	
-		//Have to deal with timeline when slider is not clicked.
-			//One bug encountred : pause song > jump to a new position > play again.
 	
 		$scope.sliderDetected = false;
 	
@@ -78,8 +72,7 @@ angular.module('shiffman').controller('p5Controller',['$scope', '$http', '$route
 	
 					shiffman.setup = function() {
 						slider = shiffman.select('#slider-color');
-						url = $location.path();
-						//console.log(url);
+						url = shiffman.getURL();
 						shiffman.noCanvas();
 						//console.log(song.isLoaded());
 						fullTime = Math.floor(song.duration());
@@ -96,7 +89,7 @@ angular.module('shiffman').controller('p5Controller',['$scope', '$http', '$route
 						//the trick to stop p5 process if controller has changed.
 						var fullTime = Math.floor(song.duration());
 						var currentTime = Math.floor(song.currentTime())
-						var current_url = $location.path();
+						var current_url = shiffman.getURL()
 						if(current_url != url) {
 						shiffman.remove();
 						}
@@ -132,4 +125,4 @@ angular.module('shiffman').controller('p5Controller',['$scope', '$http', '$route
 			});
 		}
 	
-	}]);
+}]);
