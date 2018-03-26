@@ -92,7 +92,7 @@ router.get('/music/count', authCheck, function (req, res) {
     res.json(c);
   });
 });
-
+//////////////////////////// UNABLE AUTHCHECK AFTER TESTS /////////////////////////////////
 /// POST NEW Song ///
 router.post('/music', function (req, res) {
 
