@@ -1,4 +1,4 @@
-angular.module('shiffman').controller('p5Controller',['$scope', '$http', '$routeParams', function($scope, $http, $routeParams){
+angular.module('shiffman').controller('p5Controller',['$scope', '$http', '$routeParams', '$window', function($scope, $http, $routeParams, $window){
 	console.log("p5 Controller loaded...");
 	
 		$scope.play = true;
