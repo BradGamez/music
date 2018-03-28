@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ngRoute', 'shiffman']);
+var myApp = angular.module('myApp', ['ngRoute', 'angularSoundManager']);
 
 
 myApp.config(['$routeProvider', function($routeProvider){
@@ -14,7 +14,7 @@ myApp.config(['$routeProvider', function($routeProvider){
         })
         .when('/music/read/:id', {
             templateUrl: 'views/player.html',
-            controller: 'p5Controller'
+            controller: 'appController'
         })
         .when('/auth/login', {
             templateUrl: 'views/home.html',
@@ -24,11 +24,11 @@ myApp.config(['$routeProvider', function($routeProvider){
             templateUrl: 'views/add_song.html',
             controller: 'appController'
         })
-        .when('/music/success', {
+        .when('/success', {
             templateUrl: 'views/success.html',
             controller: 'appController'
         })
-        .when('/music/error', {
+        .when('/error', {
             templateUrl: 'views/error.html',
             controller: 'appController'
         })
@@ -37,9 +37,6 @@ myApp.config(['$routeProvider', function($routeProvider){
         });
 }]);
 //use to init
-
-//Load module here
-angular.module('shiffman', []);
 
 myApp.run(function(){
 //use during app runs
@@ -66,7 +63,15 @@ myApp.controller('appController', ['$scope', '$http', '$routeParams', function($
     $scope.addSong = function() {
         $http.post('/api/music/', $scope.song).then(function (response) {
 
-            window.location.href='#!/music/success';
+            window.location.href='#!/success';
+        });
+    }
+
+    $scope.deleteSong = function(id) {
+        $http.delete('/api/music/id=' + id, $scope.song).then(function (response) {
+
+            window.location.href='#!/success';
+            shiffman.remove();
         });
     }
 
