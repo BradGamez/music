@@ -1,4 +1,4 @@
-angular.module('shiffman').controller('p5Controller',['$scope', '$http', '$routeParams', '$window', function($scope, $http, $routeParams, $window){
+angular.module('shiffman').controller('p5Controller',['$scope', '$http', '$routeParams', '$window', '$timeout', function($scope, $http, $routeParams, $window, $timeout){
 	console.log("p5 Controller loaded...");
 	
 		$scope.play = false;
@@ -12,23 +12,13 @@ angular.module('shiffman').controller('p5Controller',['$scope', '$http', '$route
 			if(play) {
 				audio.pause();
 			}
-
-			if(!play && !hasPlayedOnce) {
-				$scope.loadState = true;
-				audio.play();
-				hasPlayedOnce = true;
-			}
-			else if(!play) {
+			
+			if(!play) {
 				audio.play()
 			}
 
 			$scope.play = !$scope.play;
 			play = !play;
-
-			console.log(audio.readyState);
-			if(audio.readyState == 4) {
-				$scope.loadState = false;
-			}
 		}
 
 		$scope.deleteSong = function(id) {
@@ -70,12 +60,7 @@ angular.module('shiffman').controller('p5Controller',['$scope', '$http', '$route
 				songPath = response.data.path;
 				
 				audio = new Audio(songPath);
-				console.log(audio.readyState);
-
-				if(audio.readyState == 0) {
-					$scope.loadState = false;
-				}
-				
+				$timeout(function(){ $scope.loadState = false }, 2000);
 			});
 		}
 	
