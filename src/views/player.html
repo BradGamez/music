@@ -1,24 +1,26 @@
-<div class="row">
-    <div class="col-sm-12 col-md-12 align-center"ng-init="getSongById()">
-        <img class="img-thumbnail" style="width: 300px; height: 300px;" ng-src="{{song.album_img}}" title="{{song.album}}" alt="{{song.name}}">
-        <h1>{{song.title}}</h1>
-        <p>{{song.artist}}</p>
+<div class="swipe-container" ng-swipe-right="switchNext(song.id)" ng-swipe-left="switchBack(song.id)">
+    <div class="row">
+        <div class="col-sm-12 col-md-12 align-center"ng-init="getSongById()">
+            <img class="img-thumbnail" style="width: 300px; height: 300px;" ng-src="{{song.album_img}}" title="{{song.album}}" alt="{{song.name}}">
+            <h1>{{song.title}}</h1>
+            <p>{{song.artist}}</p>
+        </div>
     </div>
-</div>
 
-<div class='col-md-12 align-center' ng-if="loadState">
+    <div class='col-md-12 align-center' ng-if="loadState">
         <p class="loadState">
                 <i class="fa fa-circle-o-notch fa-spin"></i>
         </p>
-</div>
+    </div>
 
-<div class='col-md-12 align-center' ng-if="!loadState">
-    <a><i ng-swipe-left="switchBack(song.id)" ng-click="switchBack(song.id)" class="fa play-button-lg fa-chevron-circle-left"></i></a>
-    <a ng-if="play" ng-click="playDetect()"><i class="fa play-button-lg fa-pause-circle"></i></a>
-    <a ng-if="!play" ng-click="playDetect()"><i class="fa play-button-lg fa-play-circle"></i></a>
-    <a><i ng-swipe-right="switchNext(song.id)" ng-click="switchNext(song.id)" class="fa play-button-lg fa-chevron-circle-right"></i></a>
-</div>
+    <div class='col-md-12 align-center' ng-if="!loadState">
+        <a><i ng-click="switchBack(song.id)" class="fa play-button-lg fa-chevron-circle-left"></i></a>
+        <a ng-if="play" ng-click="playDetect()"><i class="fa play-button-lg fa-pause-circle"></i></a>
+        <a ng-if="!play" ng-click="playDetect()"><i class="fa play-button-lg fa-play-circle"></i></a>
+        <a><i ng-click="switchNext(song.id)" class="fa play-button-lg fa-chevron-circle-right"></i></a>
+    </div>
 
-<div class="delete_container">
-<a href="" style="text-align: right" ng-click="deleteSong(song.id)">Delete</a>
+    <div class="delete_container">
+    <a href="" style="text-align: right" ng-click="deleteSong(song.id)">Delete</a>
+    </div>
 </div>
