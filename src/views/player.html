@@ -6,8 +6,11 @@
     </div>
 </div>
 
+<div class='col-md-12 align-center' ng-if="loadState">
+    <p>Loading...</p>
+</div>
 
-<div class='col-md-12 align-center'>
+<div class='col-md-12 align-center' ng-if="!loadState">
     <a><i ng-click="switchBack(song.id)" class="fa play-button-lg fa-chevron-circle-left"></i></a>
     <a ng-if="play" ng-click="playDetect()"><i class="fa play-button-lg fa-pause-circle"></i></a>
     <a ng-if="!play" ng-click="playDetect()"><i class="fa play-button-lg fa-play-circle"></i></a>
