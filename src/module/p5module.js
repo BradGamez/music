@@ -3,6 +3,7 @@ angular.module('shiffman').controller('p5Controller',['$scope', '$http', '$route
 	
 		$scope.play = false;
 		play= false
+		var hasPlayedOnce = false;
 		var audio;
 		$scope.loadState = true;
 	
@@ -11,11 +12,23 @@ angular.module('shiffman').controller('p5Controller',['$scope', '$http', '$route
 			if(play) {
 				audio.pause();
 			}
-			if(!play) {
+
+			if(!play && !hasPlayedOnce) {
+				$scope.loadState = true;
 				audio.play();
-			} 
+				hasPlayedOnce = true;
+			}
+			else if(!play) {
+				audio.play()
+			}
+
 			$scope.play = !$scope.play;
 			play = !play;
+
+			console.log(audio.readyState);
+			if(audio.readyState == 4) {
+				$scope.loadState = false;
+			}
 		}
 
 		$scope.deleteSong = function(id) {
@@ -58,6 +71,7 @@ angular.module('shiffman').controller('p5Controller',['$scope', '$http', '$route
 				
 				audio = new Audio(songPath);
 				console.log(audio.readyState);
+
 				if(audio.readyState == 0) {
 					$scope.loadState = false;
 				}
