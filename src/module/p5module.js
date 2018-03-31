@@ -61,7 +61,7 @@ angular.module('shiffman', ['ngTouch']).controller('p5Controller',['$scope', '$h
 				
 				audio = new Audio(songPath);
 				audio.load();
-				$timeout(function(){ $scope.loadState = false }, 8000);
+				$timeout(function(){ $scope.loadState = false }, 4000);
 			});
 		}
 	
