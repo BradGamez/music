@@ -60,7 +60,7 @@ angular.module('shiffman').controller('p5Controller',['$scope', '$http', '$route
 				songPath = response.data.path;
 				
 				audio = new Audio(songPath);
-				$timeout(function(){ $scope.loadState = false }, 10000);
+				$timeout(function(){ $scope.loadState = false }, 12000);
 			});
 		}
 	

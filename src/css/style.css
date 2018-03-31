@@ -65,6 +65,16 @@ body {
     font-size: 40px;
 }
 
+.delete_container {
+    color: #dc3545;
+    text-decoration: none;
+    text-align: right;
+}
+
+.delete_container > a {
+    color: inherit;
+}
+
 /* Form style */
 .form-margin {
     margin-bottom: 10px;
