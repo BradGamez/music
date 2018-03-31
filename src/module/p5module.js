@@ -1,4 +1,4 @@
-angular.module('shiffman').controller('p5Controller',['$scope', '$http', '$routeParams', '$window', '$timeout', function($scope, $http, $routeParams, $window, $timeout){
+angular.module('shiffman', ['ngTouch']).controller('p5Controller',['$scope', '$http', '$routeParams', '$window', '$timeout', function($scope, $http, $routeParams, $window, $timeout){
 	console.log("p5 Controller loaded...");
 	
 		$scope.play = false;
@@ -60,7 +60,7 @@ angular.module('shiffman').controller('p5Controller',['$scope', '$http', '$route
 				songPath = response.data.path;
 				
 				audio = new Audio(songPath);
-				$timeout(function(){ $scope.loadState = false }, 12000);
+				$timeout(function(){ $scope.loadState = false }, 8000);
 			});
 		}
 	
