@@ -36,8 +36,12 @@ body {
 
 .play-button-lg {
     color: #212529;
-    font-size: 100px;
+    font-size: 80px;
     transition: .2s;
+}
+
+.img-thumbnail {
+    margin-bottom: 10px;
 }
 
 .play-button-lg:hover {
