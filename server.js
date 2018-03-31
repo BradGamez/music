@@ -29,7 +29,7 @@ app.use('/auth', auth);
 
 
 app.get('/', function (req, res) {
-    res.send('Please use /api/music');
+    res.send('Please use /api/books or /api/genres');
 
 });
 
