@@ -60,9 +60,6 @@ angular.module('shiffman').controller('p5Controller',['$scope', '$http', '$route
 				console.log(audio.readyState);
 				if(audio.readyState == 0) {
 					$scope.loadState = false;
-					audio.play();
-					play = true;
-					$scope.play = true;
 				}
 				
 			});
