@@ -12,7 +12,7 @@ angular.module('shiffman').controller('p5Controller',['$scope', '$http', '$route
 				audio.pause();
 			}
 			if(!play) {
-				audio.play()
+				audio.play();
 			} 
 			$scope.play = !$scope.play;
 			play = !play;
@@ -57,8 +57,12 @@ angular.module('shiffman').controller('p5Controller',['$scope', '$http', '$route
 				songPath = response.data.path;
 				
 				audio = new Audio(songPath);
-				if(audio = new Audio(songPath)) {
+				console.log(audio.readyState);
+				if(audio.readyState == 0) {
 					$scope.loadState = false;
+					audio.play();
+					play = true;
+					$scope.play = true;
 				}
 				
 			});
